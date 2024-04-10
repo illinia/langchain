@@ -1,0 +1,22 @@
+from langchain.llms.fake import FakeListLLM
+from langchain.agents import load_tools
+from langchain.agents import initialize_agent
+from langchain.agents import AgentType
+
+tools = load_tools(['python_repl'])
+# responses = ["Action: Python_REPL\nAction Input: print(2 + 2)", "Final Answer: 4"]
+# llm = FakeListLLM(responses=responses)
+
+# agent = initialize_agent(
+#     tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
+# )
+# agent.run("whats 2 + 2")
+
+from langchain.llms import OpenAI
+
+llm = OpenAI(temperature=0., model='davinci-002')
+
+agent = initialize_agent(
+    tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
+)
+agent.run("whats 4 + 4")
